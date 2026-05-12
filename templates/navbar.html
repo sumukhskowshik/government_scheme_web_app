@@ -1,0 +1,245 @@
+<nav class="navbar navbar-expand-lg navbar-dark gov-navbar sticky-top shadow-sm">
+
+    <style>
+
+        .gov-navbar{
+            background: linear-gradient(to right, #0d47a1, #1565c0);
+            padding: 12px 0;
+        }
+
+        .navbar-brand{
+            font-size: 24px;
+            letter-spacing: 0.5px;
+        }
+
+        .nav-link{
+            margin: 0 6px;
+            padding: 8px 14px !important;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-link:hover{
+            background-color: rgba(255,255,255,0.15);
+            color: #ffffff !important;
+            transform: translateY(-1px);
+        }
+
+        .nav-link.active{
+            background-color: #ffffff;
+            color: #0d47a1 !important;
+            font-weight: bold;
+        }
+
+        .member-btn{
+            background-color: #43a047;
+            color: white !important;
+        }
+
+        .member-btn:hover{
+            background-color: #388e3c;
+        }
+
+        .admin-btn{
+            background-color: #00acc1;
+            color: white !important;
+        }
+
+        .admin-btn:hover{
+            background-color: #0097a7;
+        }
+
+        .logout-btn{
+            background-color: #e53935;
+            color: white !important;
+        }
+
+        .logout-btn:hover{
+            background-color: #c62828;
+        }
+
+        @media(max-width:991px){
+
+            .nav-link{
+                margin: 6px 0;
+            }
+
+        }
+
+    </style>
+
+    <div class="container">
+
+        <!-- BRAND -->
+        <a class="navbar-brand fw-bold" href="/">
+            🏛 Govt Schemes Portal
+        </a>
+
+        <!-- TOGGLER -->
+        <button class="navbar-toggler border-0 shadow-none"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#navMenu">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <!-- MENU -->
+        <div class="collapse navbar-collapse" id="navMenu">
+
+            <div class="navbar-nav ms-auto align-items-lg-center">
+
+                <!-- ================================================= -->
+                <!-- BEFORE LOGIN -->
+                <!-- ================================================= -->
+
+                {% if 'member_id' not in session and 'admin' not in session %}
+
+                    <a class="nav-link {% if request.path == '/' %}active{% endif %}"
+                       href="/">
+
+                        Home
+
+                    </a>
+
+                    <a class="nav-link {% if request.path == '/view-schemes' %}active{% endif %}"
+                       href="/view-schemes">
+
+                        Schemes
+
+                    </a>
+
+                    <a class="nav-link {% if request.path == '/services' %}active{% endif %}"
+                       href="/services">
+
+                        Services
+
+                    </a>
+
+                    <a class="nav-link {% if request.path == '/about' %}active{% endif %}"
+                       href="/about">
+
+                        About
+
+                    </a>
+
+                    <a class="nav-link {% if request.path == '/contact' %}active{% endif %}"
+                       href="/contact">
+
+                        Contact
+
+                    </a>
+
+                {% endif %}
+
+                <!-- ================================================= -->
+                <!-- MEMBER NAVBAR -->
+                <!-- ================================================= -->
+
+                {% if 'member_id' in session %}
+
+                    <a class="nav-link member-btn
+                    {% if request.path == '/member-dashboard' %}active{% endif %}"
+                       href="/member-dashboard">
+
+                        Dashboard
+
+                    </a>
+
+                    <a class="nav-link
+                    {% if request.path == '/view-schemes' %}active{% endif %}"
+                       href="/view-schemes">
+
+                        Schemes
+
+                    </a>
+
+                    <a class="nav-link
+                    {% if request.path == '/match-schemes' %}active{% endif %}"
+                       href="/match-schemes">
+
+                        Eligible Schemes
+
+                    </a>
+
+                    <a class="nav-link
+                    {% if request.path == '/add-query' %}active{% endif %}"
+                       href="/add-query">
+
+                        Add Query
+
+                    </a>
+
+                    <a class="nav-link
+                    {% if request.path == '/my-queries' %}active{% endif %}"
+                       href="/my-queries">
+
+                        My Queries
+
+                    </a>
+
+                    <a class="nav-link logout-btn"
+                       href="/logout">
+
+                        Logout
+
+                    </a>
+
+                {% endif %}
+
+                <!-- ================================================= -->
+                <!-- ADMIN NAVBAR -->
+                <!-- ================================================= -->
+
+                {% if 'admin' in session %}
+
+                    <a class="nav-link admin-btn
+                    {% if request.path == '/admin-dashboard' %}active{% endif %}"
+                       href="/admin-dashboard">
+
+                        Admin Dashboard
+
+                    </a>
+
+                    <a class="nav-link
+                    {% if request.path == '/add-scheme' %}active{% endif %}"
+                       href="/add-scheme">
+
+                        Add Scheme
+
+                    </a>
+
+                    <a class="nav-link
+                    {% if request.path == '/view-applications' %}active{% endif %}"
+                       href="/view-applications">
+
+                        Applications
+
+                    </a>
+
+                    <a class="nav-link
+                    {% if request.path == '/view-queries' %}active{% endif %}"
+                       href="/view-queries">
+
+                        Queries
+
+                    </a>
+
+                    <a class="nav-link logout-btn"
+                       href="/logout">
+
+                        Logout
+
+                    </a>
+
+                {% endif %}
+
+            </div>
+
+        </div>
+
+    </div>
+
+</nav>

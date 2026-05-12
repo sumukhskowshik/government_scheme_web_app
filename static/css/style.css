@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    padding: 0;
+
+    background-image: url("/static/images/bg.png");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+/* GLOBAL CONTAINER SPACING */
+.container {
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+/* CARD SYSTEM (PROFESSIONAL LOOK) */
+.card {
+    border-radius: 14px;
+    border: none;
+    transition: 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* NAVBAR */
+.navbar {
+    padding: 12px 20px;
+}
+
+/* BUTTONS */
+.btn {
+    border-radius: 8px;
+    transition: 0.2s ease-in-out;
+}
+
+.btn:hover {
+    transform: scale(1.03);
+}
+
+/* TABLE IMPROVEMENT */
+.table {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+/* BADGES */
+.badge {
+    font-size: 12px;
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+/* HEADINGS */
+h1, h2, h3, h4 {
+    font-weight: 600;
+}
+
+/* TEXT MUTED IMPROVEMENT */
+.text-muted {
+    color: #6c757d !important;
+}

@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>Admin Dashboard - Govt Schemes Portal</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <style>
+
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+        }
+
+        /* PAGE SPACE */
+        .page-wrapper{
+            padding-top: 72px;
+        }
+
+        /* HERO */
+        .dashboard-hero{
+
+            background:
+                    linear-gradient(rgba(13,71,161,0.92),
+                    rgba(21,101,192,0.92));
+
+            color: white;
+            text-align: center;
+
+            padding: 90px 20px 110px;
+
+        }
+
+        .dashboard-hero h1{
+            font-size: 52px;
+            font-weight: 800;
+        }
+
+        .dashboard-hero p{
+            margin-top: 15px;
+            color: #e3f2fd;
+            font-size: 18px;
+        }
+
+        /* MAIN SECTION */
+        .dashboard-section{
+            margin-top: -70px;
+            padding-bottom: 80px;
+        }
+
+        .welcome-card{
+
+            background: white;
+
+            border-radius: 28px;
+
+            padding: 45px;
+
+            box-shadow: 0 18px 45px rgba(0,0,0,0.10);
+
+        }
+
+        .welcome-title{
+            color: #0d47a1;
+            font-weight: 800;
+        }
+
+        .welcome-text{
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* STATS */
+        .stats-card{
+
+            border-radius: 22px;
+            padding: 30px;
+
+            color: white;
+
+            height: 100%;
+
+            box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+
+        }
+
+        .stats-card h2{
+            font-size: 42px;
+            font-weight: 800;
+        }
+
+        .stats-card p{
+            margin-top: 10px;
+            margin-bottom: 0;
+        }
+
+        .bg-blue{
+            background: linear-gradient(to right, #1565c0, #1976d2);
+        }
+
+        .bg-green{
+            background: linear-gradient(to right, #2e7d32, #43a047);
+        }
+
+        .bg-orange{
+            background: linear-gradient(to right, #ef6c00, #fb8c00);
+        }
+
+        .bg-cyan{
+            background: linear-gradient(to right, #00838f, #00acc1);
+        }
+
+        /* FEATURE CARDS */
+        .feature-section{
+            margin-top: 60px;
+        }
+
+        .feature-card{
+
+            background: white;
+
+            border-radius: 24px;
+
+            padding: 35px;
+
+            box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+
+            transition: 0.3s;
+
+            height: 100%;
+
+        }
+
+        .feature-card:hover{
+            transform: translateY(-8px);
+        }
+
+        .feature-icon{
+            font-size: 52px;
+            margin-bottom: 18px;
+        }
+
+        .feature-card h4{
+            color: #0d47a1;
+            font-weight: 700;
+        }
+
+        .feature-card p{
+            color: #555;
+            margin-top: 12px;
+            line-height: 1.7;
+        }
+
+        .dashboard-btn{
+
+            border-radius: 30px;
+
+            padding: 11px 20px;
+
+            font-weight: 600;
+
+            margin-top: 12px;
+
+        }
+
+        /* FOOTER */
+        .footer{
+
+            background: #0d47a1;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 18px;
+
+        }
+
+        @media(max-width:768px){
+
+            .dashboard-hero h1{
+                font-size: 38px;
+            }
+
+            .welcome-card{
+                padding: 30px 20px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+{% include 'navbar.html' %}
+
+<div class="page-wrapper">
+
+    <!-- HERO -->
+    <section class="dashboard-hero">
+
+        <div class="container">
+
+            <h1>
+                Admin Dashboard
+            </h1>
+
+            <p>
+                Manage government schemes, citizen applications and support services
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- DASHBOARD -->
+    <section class="dashboard-section">
+
+        <div class="container">
+
+            <div class="welcome-card">
+
+                <!-- WELCOME -->
+                <div class="text-center">
+
+                    <h2 class="welcome-title">
+                        Welcome Admin
+                    </h2>
+
+                    <p class="welcome-text">
+
+                        Control and monitor all government portal activities
+                        through one centralized administration panel.
+
+                    </p>
+
+                </div>
+
+                <!-- STATS -->
+                <div class="row g-4 mt-4">
+
+                    <div class="col-md-3">
+
+                        <div class="stats-card bg-blue text-center">
+
+                            <h2>
+                                24/7
+                            </h2>
+
+                            <p>
+                                Portal Access
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="stats-card bg-green text-center">
+
+                            <h2>
+                                Secure
+                            </h2>
+
+                            <p>
+                                Admin System
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="stats-card bg-orange text-center">
+
+                            <h2>
+                                Fast
+                            </h2>
+
+                            <p>
+                                Application Processing
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    <div class="col-md-3">
+
+                        <div class="stats-card bg-cyan text-center">
+
+                            <h2>
+                                Smart
+                            </h2>
+
+                            <p>
+                                Scheme Management
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- FEATURES -->
+                <div class="feature-section">
+
+                    <div class="row g-4">
+
+                        <!-- ADD SCHEME -->
+                        <div class="col-md-6 col-lg-3">
+
+                            <div class="feature-card text-center">
+
+                                <div class="feature-icon">
+                                    ➕
+                                </div>
+
+                                <h4>
+                                    Add Scheme
+                                </h4>
+
+                                <p>
+
+                                    Create and publish new government welfare
+                                    schemes with eligibility details.
+
+                                </p>
+
+                                <a href="/add-scheme"
+                                   class="btn btn-primary w-100 dashboard-btn">
+
+                                    Open
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        <!-- VIEW SCHEMES -->
+                        <div class="col-md-6 col-lg-3">
+
+                            <div class="feature-card text-center">
+
+                                <div class="feature-icon">
+                                    📄
+                                </div>
+
+                                <h4>
+                                    View Schemes
+                                </h4>
+
+                                <p>
+
+                                    Access and manage all active government
+                                    schemes available in the portal.
+
+                                </p>
+
+                                <a href="/view-schemes"
+                                   class="btn btn-success w-100 dashboard-btn">
+
+                                    Open
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        <!-- APPLICATIONS -->
+                        <div class="col-md-6 col-lg-3">
+
+                            <div class="feature-card text-center">
+
+                                <div class="feature-icon">
+                                    📌
+                                </div>
+
+                                <h4>
+                                    Applications
+                                </h4>
+
+                                <p>
+
+                                    Review, approve or reject citizen
+                                    applications efficiently.
+
+                                </p>
+
+                                <a href="/view-applications"
+                                   class="btn btn-warning w-100 dashboard-btn">
+
+                                    Open
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                        <!-- QUERIES -->
+                        <div class="col-md-6 col-lg-3">
+
+                            <div class="feature-card text-center">
+
+                                <div class="feature-icon">
+                                    💬
+                                </div>
+
+                                <h4>
+                                    Queries
+                                </h4>
+
+                                <p>
+
+                                    Respond to user complaints, support
+                                    requests and portal queries.
+
+                                </p>
+
+                                <a href="/view-queries"
+                                   class="btn btn-info w-100 dashboard-btn">
+
+                                    Open
+
+                                </a>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+
+    © 2026 Govt Schemes Portal | Admin Control Panel
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

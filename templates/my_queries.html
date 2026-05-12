@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+    <title>My Queries - Govt Schemes Portal</title>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+          rel="stylesheet">
+
+    <style>
+
+        body{
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background: #f4f7fb;
+        }
+
+        /* PAGE SPACE */
+        .page-wrapper{
+            padding-top: 72px;
+        }
+
+        /* HERO */
+        .hero-section{
+
+            background:
+                    linear-gradient(rgba(13,71,161,0.92),
+                    rgba(21,101,192,0.92));
+
+            color: white;
+
+            text-align: center;
+
+            padding: 90px 20px;
+
+        }
+
+        .hero-section h1{
+            font-size: 52px;
+            font-weight: 800;
+        }
+
+        .hero-section p{
+            margin-top: 15px;
+            color: #e3f2fd;
+            font-size: 18px;
+        }
+
+        /* MAIN */
+        .queries-section{
+            padding: 70px 0;
+        }
+
+        /* CARD */
+        .queries-card{
+
+            background: white;
+
+            border-radius: 30px;
+
+            padding: 35px;
+
+            box-shadow: 0 18px 45px rgba(0,0,0,0.10);
+
+        }
+
+        .card-title{
+            color: #0d47a1;
+            font-weight: 800;
+        }
+
+        .card-subtitle{
+            color: #666;
+            margin-top: 8px;
+        }
+
+        /* TABLE */
+        .table{
+
+            margin-top: 30px;
+
+            border-radius: 18px;
+            overflow: hidden;
+
+        }
+
+        .table thead{
+            background: #0d47a1;
+            color: white;
+        }
+
+        .table th{
+            padding: 16px;
+            font-weight: 600;
+            border: none;
+        }
+
+        .table td{
+            padding: 16px;
+            vertical-align: middle;
+        }
+
+        .table tbody tr{
+            transition: 0.2s;
+        }
+
+        .table tbody tr:hover{
+            background: #f8fbff;
+        }
+
+        /* MESSAGE */
+        .message-box{
+
+            background: #f5f9ff;
+
+            border-radius: 14px;
+
+            padding: 12px;
+
+            color: #444;
+
+            min-width: 180px;
+
+        }
+
+        /* REPLY */
+        .reply-box{
+
+            border-radius: 14px;
+
+            padding: 12px;
+
+            min-width: 180px;
+
+        }
+
+        .reply-success{
+
+            background: #e8f5e9;
+
+            color: #2e7d32;
+
+            font-weight: 600;
+
+        }
+
+        .reply-pending{
+
+            background: #fff3e0;
+
+            color: #ef6c00;
+
+            font-weight: 600;
+
+        }
+
+        /* EMPTY */
+        .empty-box{
+
+            background: white;
+
+            border-radius: 24px;
+
+            padding: 60px 30px;
+
+            text-align: center;
+
+            box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+
+        }
+
+        .empty-box h3{
+            color: #0d47a1;
+            font-weight: 700;
+        }
+
+        .empty-box p{
+            color: #666;
+            margin-top: 10px;
+        }
+
+        /* INFO */
+        .info-box{
+
+            background: linear-gradient(to right, #e3f2fd, #f5fbff);
+
+            border-left: 5px solid #0d47a1;
+
+            border-radius: 18px;
+
+            padding: 20px;
+
+            margin-top: 30px;
+
+        }
+
+        .info-box h6{
+            color: #0d47a1;
+            font-weight: 700;
+        }
+
+        .info-box p{
+            margin-bottom: 0;
+            color: #555;
+            line-height: 1.7;
+        }
+
+        /* FOOTER */
+        .footer{
+
+            background: #0d47a1;
+
+            color: white;
+
+            text-align: center;
+
+            padding: 18px;
+
+        }
+
+        @media(max-width:768px){
+
+            .hero-section h1{
+                font-size: 38px;
+            }
+
+            .queries-card{
+                padding: 25px 15px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+{% include 'navbar.html' %}
+
+<div class="page-wrapper">
+
+    <!-- HERO -->
+    <section class="hero-section">
+
+        <div class="container">
+
+            <h1>
+                My Queries
+            </h1>
+
+            <p>
+                Track your submitted support requests and admin responses
+            </p>
+
+        </div>
+
+    </section>
+
+    <!-- MAIN -->
+    <section class="queries-section">
+
+        <div class="container">
+
+            {% if queries|length > 0 %}
+
+            <div class="queries-card">
+
+                <!-- HEADER -->
+                <div class="text-center">
+
+                    <h2 class="card-title">
+                        Query History
+                    </h2>
+
+                    <p class="card-subtitle">
+
+                        View your submitted queries and official responses
+
+                    </p>
+
+                </div>
+
+                <!-- TABLE -->
+                <div class="table-responsive">
+
+                    <table class="table align-middle">
+
+                        <thead>
+
+                            <tr>
+
+                                <th>Query ID</th>
+                                <th>Scheme ID</th>
+                                <th>Message</th>
+                                <th>Reply Status</th>
+
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+
+                            {% for q in queries %}
+
+                            <tr>
+
+                                <td>
+                                    #{{ q[0] }}
+                                </td>
+
+                                <td>
+                                    {{ q[2] }}
+                                </td>
+
+                                <td>
+
+                                    <div class="message-box">
+
+                                        {{ q[3] }}
+
+                                    </div>
+
+                                </td>
+
+                                <td>
+
+                                    {% if q[4] %}
+
+                                        <div class="reply-box reply-success">
+
+                                            {{ q[4] }}
+
+                                        </div>
+
+                                    {% else %}
+
+                                        <div class="reply-box reply-pending">
+
+                                            Pending Reply
+
+                                        </div>
+
+                                    {% endif %}
+
+                                </td>
+
+                            </tr>
+
+                            {% endfor %}
+
+                        </tbody>
+
+                    </table>
+
+                </div>
+
+                <!-- INFO -->
+                <div class="info-box">
+
+                    <h6>
+                        Citizen Support Information
+                    </h6>
+
+                    <p>
+
+                        You can track all submitted queries and receive
+                        official responses from administrators through
+                        this support management section.
+
+                    </p>
+
+                </div>
+
+            </div>
+
+            {% else %}
+
+            <!-- EMPTY -->
+            <div class="empty-box">
+
+                <h3>
+                    No Queries Submitted
+                </h3>
+
+                <p>
+                    You have not submitted any support queries yet.
+                </p>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+    </section>
+
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+
+    © 2026 Govt Schemes Portal | Citizen Query Tracking
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+
+</html>

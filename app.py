@@ -276,6 +276,30 @@ def apply_scheme(scheme_id):
 
     cur = mysql.connection.cursor()
 
+    # CHECK IF MEMBER ALREADY APPLIED
+    cur.execute(
+        """
+        SELECT * FROM applications
+        WHERE member_id=%s AND scheme_id=%s
+        """,
+        (member_id, scheme_id)
+    )
+
+    existing_application = cur.fetchone()
+
+    # IF ALREADY APPLIED
+    if existing_application:
+
+        cur.close()
+
+        return """
+        <script>
+            alert('You already applied for this scheme');
+            window.location.href='/view-schemes';
+        </script>
+        """
+
+    # INSERT NEW APPLICATION
     cur.execute(
         """
         INSERT INTO applications
@@ -290,7 +314,12 @@ def apply_scheme(scheme_id):
 
     cur.close()
 
-    return redirect(url_for('view_schemes'))
+    return """
+    <script>
+        alert('Application submitted successfully');
+        window.location.href='/view-schemes';
+    </script>
+    """
 
 
 # =========================================================

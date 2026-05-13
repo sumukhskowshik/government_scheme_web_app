@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, session, redirect, url_for
+from flask import Flask, render_template, request, session, redirect, url_for, flash
 from flask_mysqldb import MySQL
 from functools import wraps
 
@@ -96,10 +96,13 @@ def admin_login():
 
             session['admin'] = email
 
+            flash('Admin login successful', 'success')
+
             return redirect(url_for('admin_dashboard'))
 
         else:
-            return "Invalid Email or Password"
+
+            flash('Invalid admin email or password', 'danger')
 
     return render_template('admin_login.html')
 
@@ -131,9 +134,11 @@ def member_login():
 
             session['member_id'] = user[0]
 
+            flash('Login successful', 'success')
+
             return redirect(url_for('member_dashboard'))
 
-        return "Invalid Email or Password"
+        flash('Invalid email or password', 'danger')
 
     return render_template('member_login.html')
 
@@ -170,6 +175,8 @@ def register():
         mysql.connection.commit()
 
         cur.close()
+
+        flash('Registration successful. Please login.', 'success')
 
         return redirect(url_for('member_login'))
 
@@ -241,6 +248,8 @@ def add_scheme():
 
         cur.close()
 
+        flash('Scheme added successfully', 'success')
+
         return redirect(url_for('view_schemes'))
 
     return render_template('add_scheme.html')
@@ -276,7 +285,6 @@ def apply_scheme(scheme_id):
 
     cur = mysql.connection.cursor()
 
-    # CHECK IF MEMBER ALREADY APPLIED
     cur.execute(
         """
         SELECT * FROM applications
@@ -287,19 +295,14 @@ def apply_scheme(scheme_id):
 
     existing_application = cur.fetchone()
 
-    # IF ALREADY APPLIED
     if existing_application:
 
         cur.close()
 
-        return """
-        <script>
-            alert('You already applied for this scheme');
-            window.location.href='/view-schemes';
-        </script>
-        """
+        flash('You already applied for this scheme', 'warning')
 
-    # INSERT NEW APPLICATION
+        return redirect(url_for('view_schemes'))
+
     cur.execute(
         """
         INSERT INTO applications
@@ -314,12 +317,9 @@ def apply_scheme(scheme_id):
 
     cur.close()
 
-    return """
-    <script>
-        alert('Application submitted successfully');
-        window.location.href='/view-schemes';
-    </script>
-    """
+    flash('Application submitted successfully', 'success')
+
+    return redirect(url_for('view_schemes'))
 
 
 # =========================================================
@@ -363,6 +363,8 @@ def approve_application(application_id):
 
     cur.close()
 
+    flash('Application approved successfully', 'success')
+
     return redirect(url_for('view_applications'))
 
 
@@ -384,6 +386,8 @@ def reject_application(application_id):
     mysql.connection.commit()
 
     cur.close()
+
+    flash('Application rejected', 'danger')
 
     return redirect(url_for('view_applications'))
 
@@ -419,6 +423,8 @@ def add_query():
         mysql.connection.commit()
 
         cur.close()
+
+        flash('Query submitted successfully', 'success')
 
         return redirect(url_for('my_queries'))
 
@@ -496,6 +502,8 @@ def reply_query(query_id):
         mysql.connection.commit()
 
         cur.close()
+
+        flash('Reply submitted successfully', 'success')
 
         return redirect(url_for('view_queries'))
 
@@ -596,6 +604,8 @@ def match_schemes():
 def logout():
 
     session.clear()
+
+    flash('Logged out successfully', 'info')
 
     return redirect(url_for('home'))
 

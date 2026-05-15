@@ -595,6 +595,44 @@ def match_schemes():
         schemes=matched
     )
 
+# =========================================================
+# MY APPLICATIONS
+# =========================================================
+
+@app.route('/my-applications')
+@login_required_member
+def my_applications():
+
+    member_id = session.get('member_id')
+
+    cur = mysql.connection.cursor()
+
+    cur.execute(
+        """
+        SELECT
+            applications.id,
+            schemes.title,
+            applications.status
+
+        FROM applications
+
+        JOIN schemes
+        ON applications.scheme_id = schemes.id
+
+        WHERE applications.member_id=%s
+        """,
+        (member_id,)
+    )
+
+    applications = cur.fetchall()
+
+    cur.close()
+
+    return render_template(
+        'my_applications.html',
+        applications=applications
+    )
+
 
 # =========================================================
 # LOGOUT

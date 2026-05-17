@@ -410,6 +410,29 @@ def add_query():
 
         cur = mysql.connection.cursor()
 
+        # CHECK DUPLICATE QUERY
+        cur.execute(
+            """
+            SELECT * FROM queries
+            WHERE member_id=%s
+            AND scheme_id=%s
+            AND message=%s
+            """,
+            (member_id, scheme_id, message)
+        )
+
+        existing_query = cur.fetchone()
+
+        # IF QUERY ALREADY EXISTS
+        if existing_query:
+
+            cur.close()
+
+            flash('You already submitted this query', 'warning')
+
+            return redirect(url_for('my_queries'))
+
+        # INSERT NEW QUERY
         cur.execute(
             """
             INSERT INTO queries
